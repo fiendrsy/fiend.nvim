@@ -2,7 +2,7 @@ return {
   {
     'stevearc/oil.nvim',
     config = function()
-      require 'custom.oil'
+      require 'custom.configs.oil'
     end,
   },
 }

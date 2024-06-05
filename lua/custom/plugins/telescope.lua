@@ -12,7 +12,7 @@ return {
       'nvim-telescope/telescope-ui-select.nvim',
     },
     config = function()
-      require 'custom.telescope'
+      require 'custom.configs.telescope'
     end,
   },
 }

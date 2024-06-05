@@ -11,6 +11,6 @@ return { -- Autoformat
     },
   },
   config = function()
-    require 'custom.conform'
+    require 'custom.configs.conform'
   end 
 }

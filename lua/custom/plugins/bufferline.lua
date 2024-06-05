@@ -3,7 +3,7 @@ return {
     'akinsho/bufferline.nvim',
     version = '*',
     config = function()
-      require 'custom.bufferline'
-    end
+      require 'custom.configs.bufferline'
+    end,
   },
 }

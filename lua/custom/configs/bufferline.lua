@@ -4,6 +4,7 @@ require('bufferline').setup {
   options = {
     buffer_close_icon = '',
     close_icon = '',
+    modified_icon = '?',
     separator_style = 'thin',
     diagnostics = 'nvim_lsp',
     indicator = {
