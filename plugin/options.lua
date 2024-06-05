@@ -12,6 +12,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 local opt = vim.opt
 
+vim.g.have_nerd_font = false
+
 -- Disable statusline, bacause using tmux
 vim.o.laststatus = 0
 
