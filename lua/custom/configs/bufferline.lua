@@ -1,4 +1,5 @@
-local set = vim.keymap.set
+-- Init mappings for bufferline
+require('custom.mappings').bufferline()
 
 require('bufferline').setup {
   options = {
@@ -29,9 +30,3 @@ require('bufferline').setup {
     pick = { italic = false },
   },
 }
--- The next tab
-set('n', '<Tab>', '<cmd>bn<cr>')
--- The prev tab
-set('n', '<S-Tab>', '<cmd>bp<cr>')
--- Close active tab
-set('n', '<S-w>', '<cmd>bp<bar>bd #<cr>')

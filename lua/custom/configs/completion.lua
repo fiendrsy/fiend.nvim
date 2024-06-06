@@ -11,15 +11,7 @@ cmp.setup {
   },
   completion = { completeopt = 'menu,menuone,noinsert' },
 
-  mapping = cmp.mapping.preset.insert {
-    -- Select the next item
-    ['<Tab>'] = cmp.mapping.select_next_item(),
-    -- Select the previous item
-    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-    -- Accept currently selected item
-    ['<CR>'] = cmp.mapping.confirm { select = true },
-  },
-
+  mapping = require('custom.mappings').completion(),
   sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
