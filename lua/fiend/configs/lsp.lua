@@ -2,7 +2,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('fiend-lsp-attach', { clear = true }),
   callback = function(event)
     -- Init mappings for lsp
-    require('custom.mappings').lsp(event)
+    require('fiend.mappings').lsp(event)
 
     -- The following two autocommands are used to highlight references of the
     -- word under your cursor when your cursor rests there for a little while.

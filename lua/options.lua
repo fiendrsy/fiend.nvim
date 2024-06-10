@@ -1,7 +1,6 @@
--- Highlight when yanking (copying) text
---  Try it with `yap` in normal mode
---  See `:help vim.highlight.on_yank()`
+local opt = vim.opt
 
+-- Highlight when yanking (copying) text
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('fiend-highlight-yank', { clear = true }),
@@ -10,8 +9,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
-local opt = vim.opt
+vim.g.mapleader = ' '
 
+-- By default we don't have a font
 vim.g.have_nerd_font = false
 
 -- Disable statusline, bacause using tmux
@@ -22,7 +22,7 @@ opt.number = true
 opt.relativenumber = true
 
 -- Removing '~' that claimed the empty lines
-opt.fillchars:append({ eob = " " })
+opt.fillchars:append { eob = ' ' }
 
 -- Indent
 opt.tabstop = 2

@@ -3,5 +3,6 @@ require('oil').setup {
   view_options = {
     show_hidden = false,
   },
-  keymaps = require('custom.mappings').oil(),
+  keymaps = require('fiend.mappings').oil(),
 }
+

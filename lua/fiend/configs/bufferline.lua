@@ -1,5 +1,5 @@
 -- Init mappings for bufferline
-require('custom.mappings').bufferline()
+require('fiend.mappings').bufferline()
 
 require('bufferline').setup {
   options = {

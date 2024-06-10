@@ -2,7 +2,7 @@ local dap = require 'dap'
 local dapui = require 'dapui'
 
 -- Init mappings for dap
-require('custom.mappings').dap()
+require('fiend.mappings').dap()
 
 require('mason-nvim-dap').setup {
   automatic_installation = true,

@@ -4,7 +4,8 @@
 -- Primarily just download and execute lazy.nvim
 --]]
 
-vim.g.mapleader = ' '
+require 'options'
+require 'mappings'
 
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
@@ -16,8 +17,8 @@ end
 --@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
--- Set up lazy, and load my `lua/custom/plugins/` folder
-require('lazy').setup({ import = 'custom/plugins' }, {
+-- Set up lazy, and load my `lua/fiend/plugins/` folder
+require('lazy').setup({ import = 'fiend/plugins/init' }, {
   change_detection = {
     notify = false,
   },

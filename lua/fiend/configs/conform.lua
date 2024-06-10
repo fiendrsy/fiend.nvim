@@ -1,5 +1,5 @@
 -- Init mappings for conform
-require('custom.mappings').conform()
+require('fiend.mappings').conform()
 
 require('conform').setup {
   notify_on_error = false,

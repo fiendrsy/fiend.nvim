@@ -117,7 +117,7 @@ mappings.oil = function()
   set('n', '-', '<CMD>Oil<CR>')
 
   -- Toggle oil
-  set('n', '<leader>ee', require('oil').toggle_float)
+  set('n', '<leader>e', require('oil').toggle_float)
 
   return {
     ['g?'] = 'actions.show_help',
