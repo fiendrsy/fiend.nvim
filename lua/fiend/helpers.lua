@@ -1,5 +1,11 @@
+local M = {
+  commands = {},
+  keymaps = {},
+}
+
 local api = vim.api
 
+-- NOTE: Keymaps field
 local function scope_to_table(scope)
   if type(scope) == 'table' then
     return scope
@@ -10,8 +16,7 @@ local function scope_to_table(scope)
   }
 end
 
-local keymaps = {}
-keymaps.register = function(scopes, mappings, options)
+M.keymaps.register = function(scopes, mappings, options)
   local opts
   if options == nil then
     opts = {
@@ -30,7 +35,7 @@ keymaps.register = function(scopes, mappings, options)
   end
 end
 
-keymaps.register_bufnr = function(bufnr, scope, mappings)
+M.keymaps.register_bufnr = function(bufnr, scope, mappings)
   local options = { noremap = true, silent = true }
 
   for key, value in pairs(mappings) do
@@ -38,4 +43,13 @@ keymaps.register_bufnr = function(bufnr, scope, mappings)
   end
 end
 
-return keymaps
+-- NOTE: Commands field
+M.commands.SAVE_FILE = '<CMD>silent! w<CR>'
+M.commands.CLEAR_SEARCH_HL = '<CMD>nohlsearch<CR>'
+M.commands.UPWARD_LINE = [[<CMD>m-2<CR>gv=gv]]
+M.commands.DOWNWARD_LINE = [[<CMD>m'>+1<CR>gv=gv]]
+M.commands.BL_PREV_TAB = [[<CMD>bp<CR>]]
+M.commands.BL_NEXT_TAB = [[<CMD>bn<CR>]]
+M.commands.BL_CLOSE_TAB = [[<CMD>bp<BAR>bd #<CR>]]
+
+return M

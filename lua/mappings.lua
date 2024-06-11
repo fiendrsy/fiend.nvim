@@ -1,10 +1,10 @@
-local keymaps = require 'fiend.helpers.keymaps'
-local C = require 'fiend.helpers.commands'
+local K = require('fiend.helpers').keymaps
+local C = require('fiend.helpers').commands
 local M = {}
 
 local function buffers()
   -- NOTE: Mapping for bufferline
-  keymaps.register('n', {
+  K.register('n', {
     ['<Tab>'] = C.BL_NEXT_TAB,
     ['<S-Tab>'] = C.BL_PREV_TAB,
     ['<S-w>'] = C.BL_CLOSE_TAB,
@@ -15,7 +15,7 @@ local function navigations()
   local builtin = require 'telescope.builtin'
 
   -- NOTE: Mappings for telescope native actions
-  keymaps.register('n', {
+  K.register('n', {
     ['<leader>ff'] = builtin.find_files,
     ['<leader>gs'] = builtin.grep_string,
     ['<leader>fg'] = builtin.live_grep,
@@ -43,7 +43,7 @@ local function navigations()
   -- })
 
   -- NOTE: Mappings for oil
-  keymaps.register('n', {
+  K.register('n', {
     ['<leader>e'] = require('oil').toggle_float,
   })
 end
@@ -53,7 +53,7 @@ local function debugger()
   local dapui = require 'dapui'
 
   -- NOTE: Mappings for dap
-  keymaps.register('n', {
+  K.register('n', {
     ['<F5>'] = dap.continue,
     ['<F1>'] = dap.step_into,
     ['<F2>'] = dap.step_over,
@@ -68,13 +68,13 @@ end
 
 -- NOTE: Mappings that work with editor
 local function editor_actions()
-  keymaps.register('n', {
+  K.register('n', {
     ['<leader>ww'] = require('conform').format,
     ['<leader>w'] = C.SAVE_FILE,
     ['<Esc>'] = C.CLEAR_SEARCH_HL,
   })
 
-  keymaps.register('v', {
+  K.register('v', {
     ['J'] = C.DOWNWARD_LINE,
     ['K'] = C.UPWARD_LINE,
   })
@@ -94,7 +94,7 @@ M.lsp = function(event)
   local builtin = require 'telescope.builtin'
   local client = vim.lsp.get_client_by_id(event.data.client_id)
 
-  keymaps.register('n', {
+  K.register('n', {
     ['gD'] = builtin.lsp_definitions,
     ['gr'] = builtin.lsp_references,
     ['gi'] = builtin.lsp_implementations,
@@ -112,7 +112,7 @@ M.lsp = function(event)
   --
   -- This may be unwanted, since they displace some of your code
   if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-    keymaps.register('n', {
+    K.register('n', {
       ['<leader>th'] = function()
         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
       end,
