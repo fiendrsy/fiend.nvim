@@ -1,12 +1,13 @@
 local keymaps = require 'fiend.helpers.keymaps'
+local C = require 'fiend.helpers.commands'
 local M = {}
 
 local function buffers()
   -- NOTE: Mapping for bufferline
   keymaps.register('n', {
-    ['<Tab>'] = [[<CMD>bn<CR>]],
-    ['<S-Tab>'] = [[<CMD>bp<CR>]],
-    ['S-w'] = [[<CMD>bp<BAR>bd #<CR>]],
+    ['<Tab>'] = C.BL_NEXT_TAB,
+    ['<S-Tab>'] = C.BL_PREV_TAB,
+    ['<S-w>'] = C.BL_CLOSE_TAB,
   })
 end
 
@@ -37,16 +38,12 @@ local function navigations()
   })
 
   -- NOTE: Mapping for pick colorscheme
-  keymaps.register('n', {
-    ['<leader>pt'] = [[<CMD>lua require'theming.theme_picker'.open_picker()<CR>]],
-  })
+  -- keymaps.register('n', {
+  --   ['<leader>pt'] = require('theming.theme_picker').open_picker,
+  -- })
 
   -- NOTE: Mappings for oil
   keymaps.register('n', {
-    -- Open parent directory
-    ['-'] = '<CMD>Oil<CR>',
-
-    -- Toggle oil
     ['<leader>e'] = require('oil').toggle_float,
   })
 end
@@ -72,22 +69,14 @@ end
 -- NOTE: Mappings that work with editor
 local function editor_actions()
   keymaps.register('n', {
-    -- Save current file
-    ['<leader>w'] = '<CMD>w<CR>',
-
-    -- Format current file
-    ['<leader>ww'] = '<CMD>lua require("conform").format()<CR>',
-
-    -- Disable highlight for search via ?
-    ['<Esc>'] = '<CMD>nohlsearch<CR>',
+    ['<leader>ww'] = require('conform').format,
+    ['<leader>w'] = C.SAVE_FILE,
+    ['<Esc>'] = C.CLEAR_SEARCH_HL,
   })
 
   keymaps.register('v', {
-    -- Move current line (inside cursor) downward
-    ['J'] = [[<CMD>m'>+1<CR>gv=gv]],
-
-    -- Move current line (inside cursor) upward
-    ['K'] = [[<CMD>m-2<CR>gv=gv]],
+    ['J'] = C.DOWNWARD_LINE,
+    ['K'] = C.UPWARD_LINE,
   })
 end
 
@@ -95,13 +84,8 @@ M.completion = function()
   local cmp = require 'cmp'
 
   return cmp.mapping.preset.insert {
-    -- Select the next item
     ['<Tab>'] = cmp.mapping.select_next_item(),
-
-    -- Select the previous item
     ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-
-    -- Accept currently selected item
     ['<CR>'] = cmp.mapping.confirm { select = true },
   }
 end
@@ -111,47 +95,18 @@ M.lsp = function(event)
   local client = vim.lsp.get_client_by_id(event.data.client_id)
 
   keymaps.register('n', {
-    -- Jump to the definition of the word under your cursor.
-    --  This is where a variable was first declared, or where a function is defined, etc.
-    --  To jump back, press <C-t>.
     ['gD'] = builtin.lsp_definitions,
-
-    -- Find references for the word under your cursor.
     ['gr'] = builtin.lsp_references,
-
-    -- Jump to the implementation of the word under your cursor.
-    --  Useful when your language has ways of declaring types without an actual implementation.
     ['gi'] = builtin.lsp_implementations,
-
-    -- Jump to the type of the word under your cursor.
-    --  Useful when you're not sure what type a variable is and you want to see
-    --  the definition of its *type*, not where it was *defined*.
     ['<leader>D'] = builtin.lsp_type_definitions,
-
-    -- Fuzzy find all the symbols in your current document.
-    --  Symbols are things like variables, functions, types, etc.
     ['<leader>ds'] = builtin.lsp_document_symbols,
-
-    -- Fuzzy find all the symbols in your current workspace.
-    --  Similar to document symbols, except searches over your entire project.
     ['<leader>ws'] = builtin.lsp_dynamic_workspace_symbols,
-
-    -- Rename the variable under your cursor.
-    --  Most Language Servers support renaming across files, etc.
     ['<leader>rr'] = vim.lsp.buf.rename,
-
-    -- Execute a code action, usually your cursor needs to be on top of an error
-    -- or a suggestion from your LSP for this to activate.
     ['<leader>ca'] = vim.lsp.buf.code_action,
-
-    -- Opens a popup that displays documentation about the word under your cursor
-    --  See `:help K` for why this keymap.
     ['K'] = vim.lsp.buf.hover,
-
-    -- WARN: This is not Goto Definition, this is Goto Declaration.
-    --  For example, in C this would take you to the header.
     ['gd'] = vim.lsp.buf.declaration,
   })
+
   -- The following autocommand is used to enable inlay hints in your
   -- code, if the language server you are using supports them
   --
