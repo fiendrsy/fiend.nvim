@@ -2,7 +2,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('fiend-lsp-attach', { clear = true }),
   callback = function(event)
     -- Init mappings for lsp
-    require('fiend.mappings').lsp(event)
+    require('mappings').lsp(event)
 
     -- The following two autocommands are used to highlight references of the
     -- word under your cursor when your cursor rests there for a little while.
@@ -58,16 +58,11 @@ local servers = {
   tsserver = {},
   solargraph = {},
   lua_ls = {
-    -- cmd = {...},
-    -- filetypes = { ...},
-    -- capabilities = {},
     settings = {
       Lua = {
         completion = {
           callSnippet = 'Replace',
         },
-        -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-        -- diagnostics = { disable = { 'missing-fields' } },
       },
     },
   },

@@ -11,7 +11,7 @@ cmp.setup {
   },
   completion = { completeopt = 'menu,menuone,noinsert' },
 
-  mapping = require('fiend.mappings').completion(),
+  mapping = require('mappings').completion(),
   sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },

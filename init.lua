@@ -5,7 +5,6 @@
 --]]
 
 require 'options'
-require 'mappings'
 
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
@@ -40,3 +39,5 @@ require('lazy').setup({ import = 'fiend/plugins/init' }, {
     },
   },
 })
+
+require('mappings').setup()

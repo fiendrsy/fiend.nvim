@@ -1,6 +1,3 @@
--- Init mappings for bufferline
-require('fiend.mappings').bufferline()
-
 require('bufferline').setup {
   options = {
     buffer_close_icon = '',

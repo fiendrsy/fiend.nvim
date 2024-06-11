@@ -1,8 +1,5 @@
 local actions = require 'telescope.actions'
 
--- Init mappings for telescope
-require('fiend.mappings').telescope()
-
 require('telescope').setup {
   defaults = {
     vimgrep_arguments = {

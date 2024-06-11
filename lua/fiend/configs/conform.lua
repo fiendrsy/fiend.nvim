@@ -1,6 +1,3 @@
--- Init mappings for conform
-require('fiend.mappings').conform()
-
 require('conform').setup {
   notify_on_error = false,
 
