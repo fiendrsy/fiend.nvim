@@ -1,26 +1,16 @@
---[[
--- Setup initial configuration,
--- 
--- Primarily just download and execute lazy.nvim
---]]
-
-require 'options'
-
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+
 if not vim.loop.fs_stat(lazypath) then
   local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
+
   vim.fn.system { 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath }
 end
 
--- Add lazy to the `runtimepath`, this allows us to `require` it.
---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
--- Set up lazy, and load my `lua/fiend/plugins/` folder
-require('lazy').setup({ import = 'fiend/plugins/init' }, {
-  change_detection = {
-    notify = false,
-  },
+require('options').setup()
+
+local lazy_opt = {
   ui = {
     icons = vim.g.have_nerd_font and {} or {
       cmd = '⌘',
@@ -38,6 +28,12 @@ require('lazy').setup({ import = 'fiend/plugins/init' }, {
       lazy = '💤 ',
     },
   },
-})
+  change_detection = {
+    notify = false,
+  },
+}
+
+require('lazy').setup({ import = 'fiend/plugins/' }, lazy_opt)
 
 require('mappings').setup()
+require('options').activate_theme()

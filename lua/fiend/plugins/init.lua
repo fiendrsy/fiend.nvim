@@ -18,47 +18,6 @@ return {
   },
 
   {
-    'tjdevries/colorbuddy.nvim',
-    lazy = false,
-    priority = 1000,
-  },
-
-  {
-    'rose-pine/neovim',
-    lazy = false,
-    priority = 1000,
-    name = 'rose-pine',
-    config = function()
-      require('rose-pine').setup {
-        styles = {
-          bold = false,
-          italic = false,
-          transparency = true,
-        },
-      }
-
-      -- vim.cmd.colorscheme 'rose-pine'
-    end,
-  },
-
-  {
-    'catppuccin/nvim',
-    name = 'catppuccin',
-    priority = 1000,
-    config = function()
-      require('catppuccin').setup {
-        flavour = 'mocha',
-        no_italic = true,
-        no_bold = true,
-        no_underline = true,
-        transparent_background = true,
-      }
-
-      vim.cmd.colorscheme 'catppuccin'
-    end,
-  },
-
-  {
     'numToStr/Comment.nvim',
     config = function()
       require 'fiend.configs.comment'
@@ -212,5 +171,72 @@ return {
     end,
   },
 
+  -- NOTE: Themes
+  {
+    'tjdevries/colorbuddy.nvim',
+    lazy = false,
+    priority = 1000,
+  },
+
+  {
+    'rose-pine/neovim',
+    name = 'rose-pine',
+    lazy = false,
+    priority = 800,
+  },
+
+  {
+    'catppuccin/nvim',
+    name = 'catppuccin',
+    priority = 800,
+  },
+
+  {
+    'mofiqul/dracula.nvim',
+    lazy = false,
+    priority = 800,
+  },
+
+  {
+    'projekt0n/github-nvim-theme',
+    lazy = false,
+    priority = 800,
+  },
+
+  {
+    'ellisonleao/gruvbox.nvim',
+    lazy = false,
+    priority = 800,
+  },
+
+  {
+    'marko-cerovac/material.nvim',
+    lazy = false,
+    priority = 800,
+  },
+
+  {
+    'loctvl842/monokai-pro.nvim',
+    lazy = false,
+    priority = 800,
+  },
+
+  {
+    'edeneast/nightfox.nvim',
+    lazy = false,
+    priority = 800,
+  },
+
+  {
+    'navarasu/onedark.nvim',
+    lazy = false,
+    priority = 800,
+  },
+
+  {
+    'folke/tokyonight.nvim',
+    lazy = false,
+    priority = 800,
+  },
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 }

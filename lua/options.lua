@@ -1,89 +1,109 @@
-local opt = vim.opt
+local M = {}
 
--- Highlight when yanking (copying) text
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('fiend-highlight-yank', { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-})
+M.ui = {
+  theme = {
+    name = 'rose-pine',
+    style = 'moon',
+  },
+}
 
-vim.g.mapleader = ' '
+M.activate_theme = function()
+  local theme = M.ui.theme
 
--- By default we don't have a font
-vim.g.have_nerd_font = false
+  local themes = require 'fiend.theming.themes'
+  themes.activate_theme(theme.name, theme.style)
+end
 
--- Disable statusline, bacause using tmux
-vim.o.laststatus = 0
+M.setup = function()
+  local g = vim.g
+  local o = vim.o
+  local opt = vim.opt
+  local autocmd = vim.api.nvim_create_autocmd
 
--- Make line numbers default
-opt.number = true
-opt.relativenumber = true
+  -- NOTE: Highlight when yanking (copying) text
+  autocmd('TextYankPost', {
+    desc = 'Highlight when yanking (copying) text',
+    group = vim.api.nvim_create_augroup('fiend-highlight-yank', { clear = true }),
+    callback = function()
+      vim.highlight.on_yank()
+    end,
+  })
 
--- Removing '~' that claimed the empty lines
-opt.fillchars:append { eob = ' ' }
+  g.mapleader = ' '
 
--- Indent
-opt.tabstop = 2
-opt.softtabstop = 2
-opt.shiftwidth = 2
-opt.expandtab = true
-opt.smartindent = true
+  -- By default we don't have a font
+  g.have_nerd_font = false
 
--- Enable mouse mode, can be useful for resizing splits for example!
-opt.mouse = 'a'
+  -- Disable statusline, bacause using tmux
+  o.laststatus = 0
 
--- Don't spawn the swapfile
-opt.swapfile = false
+  -- Make line numbers default
+  opt.number = true
+  opt.relativenumber = true
 
--- Don't show the mode, since it's already in the status line
-opt.showmode = false
+  -- Removing '~' that claimed the empty lines
+  opt.fillchars:append { eob = ' ' }
 
--- Sync clipboard between OS and Neovim.
-opt.clipboard = 'unnamedplus'
+  -- Indent
+  opt.tabstop = 2
+  opt.softtabstop = 2
+  opt.shiftwidth = 2
+  opt.expandtab = true
+  opt.smartindent = true
 
--- Enable break indent
-opt.breakindent = true
+  -- Enable mouse mode, can be useful for resizing splits for example!
+  opt.mouse = 'a'
 
--- Save undo history
-opt.undofile = true
+  -- Don't spawn the swapfile
+  opt.swapfile = false
 
--- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
-opt.ignorecase = true
-opt.smartcase = true
+  -- Don't show the mode, since it's already in the status line
+  opt.showmode = false
 
--- Keep signcolumn on by default
-opt.signcolumn = 'yes'
+  -- Sync clipboard between OS and Neovim.
+  opt.clipboard = 'unnamedplus'
 
--- Decrease update time
-opt.updatetime = 250
+  -- Enable break indent
+  opt.breakindent = true
 
--- Decrease mapped sequence wait time
--- Displays which-key popup sooner
-opt.timeoutlen = 300
+  -- Save undo history
+  opt.undofile = true
 
--- Configure how new splits should be opened
-opt.splitright = true
-opt.splitbelow = true
+  -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
+  opt.ignorecase = true
+  opt.smartcase = true
 
--- Sets how neovim will display certain whitespace characters in the editor.
---  See `:help 'list'`
---  and `:help 'listchars'`
-opt.list = true
-opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+  -- Keep signcolumn on by default
+  opt.signcolumn = 'yes'
 
--- Preview substitutions live, as you type!
-opt.inccommand = 'split'
+  -- Decrease update time
+  opt.updatetime = 250
 
--- Show which line your cursor is on
-opt.cursorline = true
+  -- Decrease mapped sequence wait time
+  -- Displays which-key popup sooner
+  opt.timeoutlen = 300
 
--- Minimal number of screen lines to keep above and below the cursor.
-opt.scrolloff = 10
+  -- Configure how new splits should be opened
+  opt.splitright = true
+  opt.splitbelow = true
 
--- [[ Basic Keymaps ]]
---  See `:help vim.keymap.set()`
+  -- Sets how neovim will display certain whitespace characters in the editor.
+  --  See `:help 'list'`
+  --  and `:help 'listchars'`
+  opt.list = true
+  opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
--- Set highlight on search, but clear on pressing <Esc> in normal mode
-opt.hlsearch = true
+  -- Preview substitutions live, as you type!
+  opt.inccommand = 'split'
+
+  -- Show which line your cursor is on
+  opt.cursorline = true
+
+  -- Minimal number of screen lines to keep above and below the cursor.
+  opt.scrolloff = 10
+
+  -- Set highlight on search, but clear on pressing <Esc> in normal mode
+  opt.hlsearch = true
+end
+
+return M

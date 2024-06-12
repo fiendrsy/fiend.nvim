@@ -52,4 +52,27 @@ M.commands.BL_PREV_TAB = [[<CMD>bp<CR>]]
 M.commands.BL_NEXT_TAB = [[<CMD>bn<CR>]]
 M.commands.BL_CLOSE_TAB = [[<CMD>bp<BAR>bd #<CR>]]
 
+M.replace_word = function(old, new)
+  local options_path = vim.fn.stdpath 'config' .. '/lua/' .. 'options.lua'
+  local file = io.open(options_path, 'r')
+  local added_pattern = string.gsub(old, '-', '%%-') -- add % before - if exists
+
+  if file == nil then
+    print(file, 'is eq nil')
+    return
+  end
+
+  local new_content = file:read('*all'):gsub(added_pattern, new)
+
+  file = io.open(options_path, 'w')
+
+  if file == nil then
+    print(file, 'is eq nil')
+    return
+  end
+
+  file:write(new_content)
+  file:close()
+end
+
 return M

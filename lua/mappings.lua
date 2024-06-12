@@ -38,9 +38,9 @@ local function navigations()
   })
 
   -- NOTE: Mapping for pick colorscheme
-  -- keymaps.register('n', {
-  --   ['<leader>pt'] = require('theming.theme_picker').open_picker,
-  -- })
+  K.register('n', {
+    ['<leader>th'] = require('fiend.theming.theme_picker').open_picker,
+  })
 
   -- NOTE: Mappings for oil
   K.register('n', {
@@ -113,7 +113,7 @@ M.lsp = function(event)
   -- This may be unwanted, since they displace some of your code
   if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
     K.register('n', {
-      ['<leader>th'] = function()
+      ['<leader>ti'] = function()
         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
       end,
     })
