@@ -2,7 +2,12 @@ local K = require('fiend.helpers').keymaps
 local C = require('fiend.helpers').commands
 local M = {}
 
-local function buffers() end
+local function buffers()
+  -- NOTE: Pick list of buffers
+  K.register('n', {
+    ['<leader>l'] = require('fiend.buffers.buffer_picker').open_picker,
+  })
+end
 
 local function navigations()
   local builtin = require 'telescope.builtin'

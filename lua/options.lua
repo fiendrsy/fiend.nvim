@@ -3,7 +3,7 @@ local M = {}
 M.ui = {
   theme = {
     name = 'rose-pine',
-    style = 'main',
+    style = 'moon',
   },
 }
 
@@ -15,7 +15,6 @@ end
 
 M.setup = function()
   local g = vim.g
-  local o = vim.o
   local opt = vim.opt
   local autocmd = vim.api.nvim_create_autocmd
 
