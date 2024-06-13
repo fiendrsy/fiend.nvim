@@ -48,9 +48,6 @@ M.commands.SAVE_FILE = '<CMD>silent! w<CR>'
 M.commands.CLEAR_SEARCH_HL = '<CMD>nohlsearch<CR>'
 M.commands.UPWARD_LINE = [[<CMD>m-2<CR>gv=gv]]
 M.commands.DOWNWARD_LINE = [[<CMD>m'>+1<CR>gv=gv]]
-M.commands.BL_PREV_TAB = [[<CMD>bp<CR>]]
-M.commands.BL_NEXT_TAB = [[<CMD>bn<CR>]]
-M.commands.BL_CLOSE_TAB = [[<CMD>bp<BAR>bd #<CR>]]
 
 M.replace_word = function(old, new)
   local options_path = vim.fn.stdpath 'config' .. '/lua/' .. 'options.lua'

@@ -2,6 +2,7 @@ local actions = require 'telescope.actions'
 
 require('telescope').setup {
   defaults = {
+    initial_mode = 'normal',
     vimgrep_arguments = {
       'rg',
       '-L',

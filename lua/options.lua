@@ -3,13 +3,12 @@ local M = {}
 M.ui = {
   theme = {
     name = 'rose-pine',
-    style = 'moon',
+    style = 'main',
   },
 }
 
 M.activate_theme = function()
   local theme = M.ui.theme
-
   local themes = require 'fiend.theming.themes'
   themes.activate_theme(theme.name, theme.style)
 end
@@ -33,9 +32,6 @@ M.setup = function()
 
   -- By default we don't have a font
   g.have_nerd_font = false
-
-  -- Disable statusline, bacause using tmux
-  o.laststatus = 0
 
   -- Make line numbers default
   opt.number = true

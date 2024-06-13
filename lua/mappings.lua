@@ -2,14 +2,7 @@ local K = require('fiend.helpers').keymaps
 local C = require('fiend.helpers').commands
 local M = {}
 
-local function buffers()
-  -- NOTE: Mapping for bufferline
-  K.register('n', {
-    ['<Tab>'] = C.BL_NEXT_TAB,
-    ['<S-Tab>'] = C.BL_PREV_TAB,
-    ['<S-w>'] = C.BL_CLOSE_TAB,
-  })
-end
+local function buffers() end
 
 local function navigations()
   local builtin = require 'telescope.builtin'

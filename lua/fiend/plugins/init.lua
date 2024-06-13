@@ -10,14 +10,6 @@ return {
   },
 
   {
-    'akinsho/bufferline.nvim',
-    version = '*',
-    config = function()
-      require 'fiend.configs.bufferline'
-    end,
-  },
-
-  {
     'numToStr/Comment.nvim',
     config = function()
       require 'fiend.configs.comment'
