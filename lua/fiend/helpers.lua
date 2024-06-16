@@ -18,6 +18,7 @@ end
 
 M.keymaps.register = function(scopes, mappings, options)
   local opts
+
   if options == nil then
     opts = {
       nowait = true,
@@ -50,21 +51,23 @@ M.commands.UPWARD_LINE = [[<CMD>m-2<CR>gv=gv]]
 M.commands.DOWNWARD_LINE = [[<CMD>m'>+1<CR>gv=gv]]
 
 M.replace_word = function(old, new)
-  local options_path = vim.fn.stdpath 'config' .. '/lua/' .. 'options.lua'
-  local file = io.open(options_path, 'r')
-  local added_pattern = string.gsub(old, '-', '%%-') -- add % before - if exists
+  local OPTIONS_FILE_PATH = vim.fn.stdpath 'config' .. '/lua/' .. 'options.lua'
+  local added_pattern = string.gsub(old, '-', '%%-') -- Add % before - if exists
+  local file = io.open(OPTIONS_FILE_PATH, 'r')
 
   if file == nil then
-    print(file, 'is eq nil')
+    print(file, 'Value is equal nil! helpers.lua/replace_word line:56 ')
+
     return
   end
 
-  local new_content = file:read('*all'):gsub(added_pattern, new)
+  local new_content = file:read('*all'):gsub(added_pattern, new, 1)
 
-  file = io.open(options_path, 'w')
+  file = io.open(OPTIONS_FILE_PATH, 'w')
 
   if file == nil then
-    print(file, 'is eq nil')
+    print(file, 'Value is equal nil! helpers.lua/replace_word line:65 ')
+
     return
   end
 
