@@ -2,18 +2,20 @@ local M = {}
 
 M.ui = {
   theme = {
-    name = 'nightfox',
-    style = 'terafox',
+    name = 'rose-pine',
+    style = 'moon',
   },
   default_theme = {
     name = 'rose-pine',
     style = 'moon',
+    transparent = true,
   },
 }
 
 M.activate_theme = function()
   local theme = M.ui.theme
   local themes = require 'fiend.theming.themes'
+
   themes.activate_theme(theme.name, theme.style)
 end
 
@@ -32,7 +34,7 @@ M.setup = function()
     end,
   })
 
-  -- Load the custom statusline module
+  -- Load the custom status line module
   _G.status_line_fn = require('fiend.status_line.status_line').status_line
 
   -- Set the status line to the result of the function

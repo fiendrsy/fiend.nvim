@@ -1,5 +1,36 @@
+local cmd = vim.cmd
+
 local function set_theme(name)
-  vim.cmd.colorscheme(name)
+  cmd.colorscheme(name)
+end
+
+local function set_cursor_line(transparent)
+  if transparent then
+    vim.opt.cursorline = false
+  else
+    vim.opt.cursorline = true
+  end
+end
+
+local function is_light_style(style)
+  local light_styles = {
+    'latte',
+    'dawn',
+    'day',
+    'light',
+    'light_default',
+    'dayfox',
+    'dawnfox',
+    'lighter',
+  }
+
+  for _, l_style in ipairs(light_styles) do
+    if l_style == style then
+      return true
+    end
+  end
+
+  return false
 end
 
 local M = {
@@ -145,34 +176,46 @@ local M = {
   },
 }
 
-M.activate_theme = function(theme, style)
-  local entry = M.themes[theme]
-  local transparent = true
-  local light_styles = {
-    'latte',
-    'dawn',
-    'day',
-    'light',
-    'light_default',
-    'dayfox',
-    'dawnfox',
-    'lighter',
+local function set_default(old_theme, old_style)
+  local default = require('options').ui.default_theme
+
+  local update_theme = {
+    [old_theme] = default.name,
+    [old_style] = default.style,
   }
 
-  for _, l_style in ipairs(light_styles) do
-    if l_style == style then
-      transparent = false
-      break
-    end
+  for old, new in pairs(update_theme) do
+    require('fiend.helpers').replace_word(old, new)
+  end
+
+  local entry = M.themes[default.name]
+
+  entry.activate(default.style, default.trasparent)
+
+  set_cursor_line(default.transparent)
+
+  -- Close nvim
+  cmd 'qa!'
+end
+
+M.activate_theme = function(theme, style)
+  local transparent = true
+  local entry = M.themes[theme]
+
+  if is_light_style(style) then
+    transparent = false
+  end
+
+  -- TODO: Creaet a feat. to remember the last theme []
+  if entry == nil then
+    set_default(theme, style)
+
+    return
   end
 
   entry.activate(style, transparent)
 
-  if transparent then
-    vim.opt.cursorline = false
-  else
-    vim.opt.cursorline = true
-  end
+  set_cursor_line(transparent)
 end
 
 return M
