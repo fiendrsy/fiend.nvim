@@ -2,8 +2,8 @@ local M = {}
 
 M.ui = {
   theme = {
-    name = 'rose-pine',
-    style = 'moon',
+    name = 'nightfox',
+    style = 'carbonfox',
   },
   default_theme = {
     name = 'rose-pine',
@@ -21,7 +21,6 @@ end
 
 M.setup = function()
   local g = vim.g
-  local o = vim.o
   local opt = vim.opt
   local autocmd = vim.api.nvim_create_autocmd
 
@@ -33,12 +32,6 @@ M.setup = function()
       vim.highlight.on_yank()
     end,
   })
-
-  -- Load the custom status line module
-  _G.status_line_fn = require('fiend.status_line.status_line').status_line
-
-  -- Set the status line to the result of the function
-  o.statusline = '%!v:lua.status_line_fn()'
 
   -- Bind space key
   g.mapleader = ' '

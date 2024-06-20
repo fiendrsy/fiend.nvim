@@ -163,6 +163,13 @@ return {
     end,
   },
 
+  {
+    'nvim-lualine/lualine.nvim',
+    config = function()
+      require 'fiend.configs.status_line'
+    end,
+  },
+
   -- NOTE: Themes
   {
     'tjdevries/colorbuddy.nvim',
