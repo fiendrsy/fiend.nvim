@@ -6,7 +6,7 @@ local api = vim.api
 local fn = vim.fn
 
 local function is_buffer_modified(bufnr)
-  return api.nvim_buf_get_option(bufnr, 'modified')
+  return vim.bo[bufnr].modified
 end
 
 local function split_path(bufnr)
