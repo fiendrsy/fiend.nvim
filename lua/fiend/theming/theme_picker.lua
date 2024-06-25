@@ -105,20 +105,20 @@ M.open_picker = function()
       -- NOTE: Save theme to options on enter
       actions.select_default:replace(function()
         if action_state.get_selected_entry() then
-          local entry = action_state.get_selected_entry().value
+          local OPTIONS_FILE_PATH = '/lua/options.lua'
 
-          local options_path = '/lua/options.lua'
-          local options = dofile(vim.fn.stdpath 'config' .. options_path)
+          local entry = action_state.get_selected_entry().value
+          local options = dofile(vim.fn.stdpath 'config' .. OPTIONS_FILE_PATH)
 
           local old_theme = options.ui.theme.name
           local old_style = options.ui.theme.style
 
-          local theme_updates = {
+          local update_theme = {
             [old_theme] = entry[1],
             [old_style] = entry[2],
           }
 
-          for old, new in pairs(theme_updates) do
+          for old, new in pairs(update_theme) do
             require('fiend.helpers').replace_word(old, new)
           end
 
