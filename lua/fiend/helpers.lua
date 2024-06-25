@@ -52,6 +52,7 @@ M.commands.DOWNWARD_LINE = [[<CMD>m'>+1<CR>gv=gv]]
 
 M.replace_word = function(old, new)
   local OPTIONS_FILE_PATH = vim.fn.stdpath 'config' .. '/lua/' .. 'options.lua'
+
   local added_pattern = string.gsub(old, '-', '%%-') -- Add % before - if exists
   local file = io.open(OPTIONS_FILE_PATH, 'r')
 
