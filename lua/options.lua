@@ -19,6 +19,18 @@ M.activate_theme = function()
   themes.activate_theme(theme.name, theme.style)
 end
 
+M.languages = function()
+  local list_languages = require('fiend.helpers').list_languages()
+
+  if list_languages == nil then
+    return
+  end
+
+  for _, lang in ipairs(list_languages) do
+    require('fiend.languages' .. '.' .. lang).setup()
+  end
+end
+
 M.setup = function()
   local g = vim.g
   local opt = vim.opt
@@ -93,7 +105,7 @@ M.setup = function()
   --  See `:help 'list'`
   --  and `:help 'listchars'`
   opt.list = true
-  opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+  opt.listchars = { tab = '▎ ', trail = '·', nbsp = '␣' }
 
   -- Preview substitutions live, as you type!
   opt.inccommand = 'split'

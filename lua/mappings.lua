@@ -93,7 +93,7 @@ M.lsp = function(event)
   local client = vim.lsp.get_client_by_id(event.data.client_id)
 
   K.register('n', {
-    ['gD'] = builtin.lsp_definitions,
+    ['gd'] = builtin.lsp_definitions,
     ['gr'] = builtin.lsp_references,
     ['gi'] = builtin.lsp_implementations,
     ['<leader>D'] = builtin.lsp_type_definitions,
@@ -102,7 +102,7 @@ M.lsp = function(event)
     ['<leader>rr'] = vim.lsp.buf.rename,
     ['<leader>ca'] = vim.lsp.buf.code_action,
     ['K'] = vim.lsp.buf.hover,
-    ['gd'] = vim.lsp.buf.declaration,
+    ['gD'] = vim.lsp.buf.declaration,
   })
 
   -- The following autocommand is used to enable inlay hints in your

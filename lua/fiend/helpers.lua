@@ -1,9 +1,24 @@
+local fn = vim.fn
+local api = vim.api
+
+local LUA_DIR_PATH = fn.stdpath 'config' .. '/lua/'
+
 local M = {
   commands = {},
   keymaps = {},
 }
 
-local api = vim.api
+local function trim_extension(files)
+  local trimmed_files = {}
+
+  for _, file in ipairs(files) do
+    local file_without_extension = string.gsub(file, '%.%w+$', '')
+
+    table.insert(trimmed_files, file_without_extension)
+  end
+
+  return trimmed_files
+end
 
 -- NOTE: Keymaps field
 local function scope_to_table(scope)
@@ -51,7 +66,7 @@ M.commands.UPWARD_LINE = [[<CMD>m-2<CR>gv=gv]]
 M.commands.DOWNWARD_LINE = [[<CMD>m'>+1<CR>gv=gv]]
 
 M.replace_word = function(old, new)
-  local OPTIONS_FILE_PATH = vim.fn.stdpath 'config' .. '/lua/' .. 'options.lua'
+  local OPTIONS_FILE_PATH = LUA_DIR_PATH .. 'options.lua'
 
   local added_pattern = string.gsub(old, '-', '%%-') -- Add % before - if exists
   local file = io.open(OPTIONS_FILE_PATH, 'r')
@@ -74,6 +89,20 @@ M.replace_word = function(old, new)
 
   file:write(new_content)
   file:close()
+end
+
+M.list_languages = function()
+  local LANGUAGES_DIR_PATH = LUA_DIR_PATH .. 'fiend/' .. 'languages/'
+
+  local files = fn.readdir(LANGUAGES_DIR_PATH)
+
+  if #files == 0 then
+    print('No .lua files found in directory: ' .. LANGUAGES_DIR_PATH)
+
+    return
+  end
+
+  return trim_extension(files)
 end
 
 return M
