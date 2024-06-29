@@ -36,4 +36,5 @@ local lazy_opt = {
 require('lazy').setup({ import = 'fiend/plugins/' }, lazy_opt)
 
 require('mappings').setup()
+require('options').languages()
 require('options').activate_theme()
