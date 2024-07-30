@@ -166,7 +166,7 @@ return {
   {
     'nvim-lualine/lualine.nvim',
     config = function()
-      require 'fiend.configs.status_line'
+      require 'fiend.configs.statusline'
     end,
   },
 
