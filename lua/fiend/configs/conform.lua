@@ -3,7 +3,9 @@ require('conform').setup {
 
   formatters_by_ft = {
     lua = { 'stylua' },
-    javascript = { { 'prettierd', 'prettier' } },
     go = { 'gofmt' },
+    javascript = { { 'prettierd', 'prettier' } },
+    typescript = { { 'prettierd', 'prettier' } },
+    json = { 'prettier' },
   },
 }
