@@ -66,7 +66,7 @@ local servers = {
       },
     },
   },
-  gopls = {}
+  gopls = {},
 }
 
 --  You can press `g?` for help in this menu.

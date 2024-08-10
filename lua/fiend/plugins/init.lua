@@ -59,6 +59,14 @@ return {
   },
 
   {
+
+    'mxsdev/nvim-dap-vscode-js',
+    config = function()
+      require 'fiend.configs.debug-vscode'
+    end,
+  },
+
+  {
     'mfussenegger/nvim-dap',
     dependencies = {
       -- Creates a beautiful debugger UI
@@ -66,7 +74,11 @@ return {
 
       -- Required dependency for nvim-dap-ui
       'nvim-neotest/nvim-nio',
-
+      {
+        'microsoft/vscode-js-debug',
+        version = '1.x',
+        build = 'npm i && npm run compile vsDebugServerBundle && mv dist out',
+      },
       -- Installs the debug adapters for you
       'williamboman/mason.nvim',
       'jay-babu/mason-nvim-dap.nvim',

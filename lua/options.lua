@@ -3,7 +3,7 @@ local M = {}
 M.ui = {
   theme = {
     name = 'nightfox',
-    style = 'carbonfox',
+    style = 'terafox',
   },
   default_theme = {
     name = 'rose-pine',
@@ -35,7 +35,7 @@ M.setup = function()
   local g = vim.g
   local opt = vim.opt
   local autocmd = vim.api.nvim_create_autocmd
-
+  
   -- NOTE: Highlight when yanking (copying) text
   autocmd('TextYankPost', {
     desc = 'Highlight when yanking (copying) text',

@@ -7,5 +7,7 @@ require('conform').setup {
     javascript = { { 'prettierd', 'prettier' } },
     typescript = { { 'prettierd', 'prettier' } },
     json = { 'prettier' },
+    css = { 'prettier' },
+    html = { 'prettier' },
   },
 }
