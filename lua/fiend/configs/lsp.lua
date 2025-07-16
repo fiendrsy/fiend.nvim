@@ -55,7 +55,7 @@ local servers = {
   clangd = {},
   pyright = {},
   rust_analyzer = {},
-  tsserver = {},
+  ['typescript-language-server'] = {},
   solargraph = {},
   lua_ls = {
     settings = {
@@ -65,8 +65,7 @@ local servers = {
         },
       },
     },
-  },
-  gopls = {},
+  }
 }
 
 --  You can press `g?` for help in this menu.

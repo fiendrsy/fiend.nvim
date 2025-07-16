@@ -3,7 +3,7 @@ local M = {}
 M.ui = {
   theme = {
     name = 'nightfox',
-    style = 'terafox',
+    style = 'carbonfox',
   },
   default_theme = {
     name = 'rose-pine',
